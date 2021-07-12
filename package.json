@@ -1,0 +1,24 @@
+{
+  "name": "alurakut",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^11.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-is": "^17.0.2",
+    "styled-components": "^5.2.3"
+  },
+  "devDependencies": {
+    "axios": "^0.21.1",
+    "babel-plugin-styled-components": "^1.12.0",
+    "eslint": "^7.30.0",
+    "eslint-config-next": "^11.0.1"
+  },
+  "license": "MIT"
+}
