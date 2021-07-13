@@ -38,12 +38,41 @@ function ProfileSidebar({ githubUser }) {
   )
 }
 
+function CommunityBox({ data, title }) {
+  return (
+    <>
+      <h2 className="smallTitle">
+        {title} ({data.length})
+      </h2>
+      <ul>
+        {data.map(({ name, url, imageUrl, id }, index) => {
+          if (index <= 5) {
+            return (
+              <li key={id}>
+                <a href={url} target="_blank" rel="noreferrer">
+                  <Image
+                    src={imageUrl}
+                    alt="Profile picture"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                  <span>{name}</span>
+                </a>
+              </li>
+            )
+          }
+        })}
+      </ul>
+    </>
+  )
+}
+
 export default function Home() {
   const githubUser = 'torvalds'
   const [communities, setCommunities] = useState([
     {
       id: 'gergerherthrthrthjrthjrtyrtyjtyjktym514614',
-      title: 'Eu odeio acordar cedo',
+      name: 'Eu odeio acordar cedo',
       imageUrl: 'https://alurakut.vercel.app/capa-comunidade-01.jpg',
       url: 'https://github.com',
     },
@@ -58,7 +87,7 @@ export default function Home() {
       const followers = []
       response.data.map(user => {
         followers.push({
-          user: user.login,
+          name: user.login,
           url: user.html_url,
           imageUrl: user.avatar_url,
           id: user.id,
@@ -145,50 +174,10 @@ export default function Home() {
           style={{ gridArea: 'profileRelationsArea' }}
         >
           <ProfileRelationsBoxWrapper>
-            <h2 className="smallTitle">
-              Pessoas da comunidade ({followers.length})
-            </h2>
-            <ul>
-              {followers.map(({ user, url, imageUrl, id }, index) => {
-                if (index <= 5) {
-                  return (
-                    <li key={id}>
-                      <a href={url} target="_blank" rel="noreferrer">
-                        <Image
-                          src={imageUrl}
-                          alt="Profile picture"
-                          layout="fill"
-                          objectFit="cover"
-                        />
-                        <span>{user}</span>
-                      </a>
-                    </li>
-                  )
-                }
-              })}
-            </ul>
+            <CommunityBox data={followers} title="Pessoas da comunidade" />
           </ProfileRelationsBoxWrapper>
           <ProfileRelationsBoxWrapper>
-            <h2 className="smallTitle">Comunidades ({communities.length})</h2>
-            <ul>
-              {communities.map(({ title, id, imageUrl, url }, index) => {
-                if (index <= 5) {
-                  return (
-                    <li key={id}>
-                      <a href={url} target="_blank" rel="noreferrer">
-                        <Image
-                          src={imageUrl}
-                          alt="Community picture"
-                          layout="fill"
-                          objectFit="cover"
-                        />
-                        <span>{title}</span>
-                      </a>
-                    </li>
-                  )
-                }
-              })}
-            </ul>
+            <CommunityBox data={communities} title="Comunidades" />
           </ProfileRelationsBoxWrapper>
         </div>
       </MainGrid>
