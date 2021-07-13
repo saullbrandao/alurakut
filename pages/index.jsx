@@ -43,7 +43,7 @@ export default function Home() {
     {
       id: 'gergerherthrthrthjrthjrtyrtyjtyjktym514614',
       title: 'Eu odeio acordar cedo',
-      image: 'https://alurakut.vercel.app/capa-comunidade-01.jpg',
+      url: 'https://github.com',
     },
   ])
   const [followers, setFollowers] = useState([])
@@ -67,12 +67,18 @@ export default function Home() {
   function handleCreateCommunity(event) {
     event.preventDefault()
     const formData = new FormData(event.target)
-    const community = {
+
+    const newCommunity = {
       id: new Date().toISOString(),
       title: formData.get('title'),
-      image: formData.get('image'),
+      url: formData.get('url'),
     }
-    setCommunities([...communities, community])
+    setCommunities([...communities, newCommunity])
+
+    for (let key of formData.keys()) {
+      formData.delete(key)
+    }
+    document.getElementById('addCommunityForm').reset()
   }
 
   return (
@@ -89,20 +95,23 @@ export default function Home() {
           </Box>
           <Box>
             <h2 className="subTitle">O que você deseja fazer?</h2>
-            <form onSubmit={handleCreateCommunity}>
+            <form id="addCommunityForm" onSubmit={handleCreateCommunity}>
               <div>
                 <input
                   placeholder="Qual vai ser o nome da sua comunidade?"
                   name="title"
                   aria-label="Qual vai ser o nome da sua comunidade?"
                   type="text"
+                  required
                 />
               </div>
+
               <div>
                 <input
-                  placeholder="Coloque uma URL para usar de capa"
-                  name="image"
-                  aria-label="Coloque uma URL para usar de capa"
+                  placeholder="Coloque a URL de acesso da sua comunidade"
+                  name="url"
+                  aria-label="Coloque a URL de acesso da sua comunidade"
+                  type="url"
                 />
               </div>
 
@@ -141,13 +150,13 @@ export default function Home() {
           <ProfileRelationsBoxWrapper>
             <h2 className="smallTitle">Comunidades ({communities.length})</h2>
             <ul>
-              {communities.map(({ title, image, id }, index) => {
+              {communities.map(({ title, id, url }, index) => {
                 if (index <= 5) {
                   return (
                     <li key={id}>
-                      <a href={'#'}>
+                      <a href={url} target="blank" rel="external">
                         <Image
-                          src={image}
+                          src={`https://picsum.photos/300?${title}`}
                           alt="Community picture"
                           layout="fill"
                           objectFit="cover"
