@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { MainGrid } from '../src/components/MainGrid'
 import { Box } from '../src/components/Box'
 import {
@@ -7,9 +8,9 @@ import {
 } from '../src/lib/AlurakutCommons'
 import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import styled from 'styled-components'
+import { checkImage } from '../src/utils/checkImage'
 
 const ProfileImage = styled(Image)`
   border-radius: 8px;
@@ -56,7 +57,12 @@ export default function Home() {
       )
       const followers = []
       response.data.map(user => {
-        followers.push({ user: user.login, url: user.html_url })
+        followers.push({
+          user: user.login,
+          url: user.html_url,
+          imageUrl: user.avatar_url,
+          id: user.id,
+        })
       })
 
       setFollowers(followers)
@@ -70,12 +76,6 @@ export default function Home() {
     const formData = new FormData(event.target)
 
     const imageUrl = formData.get('image')
-
-    async function checkImage(url) {
-      const res = await fetch(url)
-      const buff = await res.blob()
-      return buff.type.startsWith('image/')
-    }
 
     const validImage = await checkImage(imageUrl)
 
@@ -149,13 +149,13 @@ export default function Home() {
               Pessoas da comunidade ({followers.length})
             </h2>
             <ul>
-              {followers.map(({ user, url }, index) => {
+              {followers.map(({ user, url, imageUrl, id }, index) => {
                 if (index <= 5) {
                   return (
-                    <li key={user}>
+                    <li key={id}>
                       <a href={url} target="_blank" rel="noreferrer">
                         <Image
-                          src={`https://github.com/${user}.png`}
+                          src={imageUrl}
                           alt="Profile picture"
                           layout="fill"
                           objectFit="cover"
