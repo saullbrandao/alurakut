@@ -1,84 +1,113 @@
-# Example app with styled-components
+[![MIT License][license-shield]][license-url]
+[![Issues][issues-shield]][issues-url]
 
-This example features how you use a different styling solution than [styled-jsx](https://github.com/vercel/styled-jsx) that also supports universal styles. That means we can serve the required styles for the first render within the HTML and then load the rest in the client. In this case we are using [styled-components](https://github.com/styled-components/styled-components).
-
-For this purpose we are extending the `<Document />` and injecting the server side rendered styles into the `<head>`, and also adding the `babel-plugin-styled-components` (which is required for server side rendering). Additionally we set up a global [theme](https://www.styled-components.com/docs/advanced#theming) for styled-components using NextJS custom [`<App>`](https://nextjs.org/docs/advanced-features/custom-app) component.
-
-## Preview
-
-Preview the example live on [StackBlitz](http://stackblitz.com/):
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-styled-components)
-
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-styled-components&project-name=with-styled-components&repository-name=with-styled-components)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-styled-components with-styled-components-app
-# or
-yarn create next-app --example with-styled-components with-styled-components-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
-
-### Try it on CodeSandbox
-
-[Open this example on CodeSandbox](https://codesandbox.io/s/github/vercel/next.js/tree/canary/examples/with-styled-components)
-
-### Notes
-
-When wrapping a [Link](https://nextjs.org/docs/api-reference/next/link) from `next/link` within a styled-component, the [as](https://styled-components.com/docs/api#as-polymorphic-prop) prop provided by `styled` will collide with the Link's `as` prop and cause styled-components to throw an `Invalid tag` error. To avoid this, you can either use the recommended [forwardedAs](https://styled-components.com/docs/api#forwardedas-prop) prop from styled-components or use a different named prop to pass to a `styled` Link.
-
-<details>
-<summary>Click to expand workaround example</summary>
+<!-- PROJECT LOGO -->
 <br />
+<p align="center">
+  <a href="https://github.com/saullbrandao/alurakut">
+    <img src="https://alurakut.vercel.app/logo.svg" alt="Logo" width="335" height="80">
+  </a>
 
-**components/StyledLink.js**
+  <h3 align="center">Alurakut</h3>
 
-```javascript
-import Link from 'next/link'
-import styled from 'styled-components'
+  <p align="center">
+    <!-- TODO -->
+    <!-- Get information about countries
+    <br /> -->
+    <br />
+    <a href="https://alurakut-saullbrandao.vercel.app/">View Demo</a>
+    ·
+    <a href="https://github.com/saullbrandao/alurakut/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/saullbrandao/alurakut/issues">Request Feature</a>
+  </p>
+</p>
 
-const StyledLink = ({ as, children, className, href }) => (
-  <Link href={href} as={as} passHref>
-    <a className={className}>{children}</a>
-  </Link>
-)
-
-export default styled(StyledLink)`
-  color: #0075e0;
-  text-decoration: none;
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    color: #40a9ff;
-  }
-
-  &:focus {
-    color: #40a9ff;
-    outline: none;
-    border: 0;
-  }
-`
-```
-
-**pages/index.js**
-
-```javascript
-import StyledLink from '../components/StyledLink'
-
-export default () => (
-  <StyledLink href="/post/[pid]" forwardedAs="/post/abc">
-    First post
-  </StyledLink>
-)
-```
-
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
 </details>
+
+<!-- ABOUT THE PROJECT -->
+
+## About The Project
+
+<!-- TODO -->
+
+![countries-app](https://raw.githubusercontent.com/saullbrandao/alurakut/main/public/demo.png)
+
+<!-- TODO -->
+
+<!-- - Use data from the REST Countries API to display information(population,
+  languages, currencies, capital, border countries, etc.) about the countries
+- You can filter by region and search by country name
+- There is a light and dark mode
+- Clicking on a card will open a new page which display more information about
+  the country selected. -->
+
+### Built With
+
+- [React](https://github.com/facebook/react)
+- [Next.js](https://github.com/vercel/next.js/)
+- [Styled Components](https://github.com/styled-components/styled-components)
+
+<!-- GETTING STARTED -->
+
+## Getting Started
+
+To get a local copy up and running follow these simple steps.
+
+### Prerequisites
+
+You will need to install Node.js and yarn
+
+- [Node.js](https://nodejs.org/en/download/)
+- yarn
+  ```sh
+  npm install -g yarn
+  ```
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/saullbrandao/alurakut.git
+   ```
+2. Install packages
+   ```sh
+   yarn
+   ```
+
+<!-- USAGE EXAMPLES -->
+
+## Usage
+
+1. Run the project
+   ```sh
+   yarn dev
+   ```
+2. This starts the development server on http://localhost:3000
+
+<!-- LICENSE -->
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
