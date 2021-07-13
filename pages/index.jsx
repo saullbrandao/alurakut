@@ -43,6 +43,7 @@ export default function Home() {
     {
       id: 'gergerherthrthrthjrthjrtyrtyjtyjktym514614',
       title: 'Eu odeio acordar cedo',
+      imageUrl: 'https://alurakut.vercel.app/capa-comunidade-01.jpg',
       url: 'https://github.com',
     },
   ])
@@ -64,13 +65,26 @@ export default function Home() {
     getFollowers(githubUser)
   }, [githubUser])
 
-  function handleCreateCommunity(event) {
+  async function handleCreateCommunity(event) {
     event.preventDefault()
     const formData = new FormData(event.target)
+
+    const imageUrl = formData.get('image')
+
+    async function checkImage(url) {
+      const res = await fetch(url)
+      const buff = await res.blob()
+      return buff.type.startsWith('image/')
+    }
+
+    const validImage = await checkImage(imageUrl)
 
     const newCommunity = {
       id: new Date().toISOString(),
       title: formData.get('title'),
+      imageUrl: validImage
+        ? imageUrl
+        : `https://picsum.photos/300?${formData.get('title')}`,
       url: formData.get('url'),
     }
     setCommunities([...communities, newCommunity])
@@ -105,7 +119,14 @@ export default function Home() {
                   required
                 />
               </div>
-
+              <div>
+                <input
+                  placeholder="Coloque a URL da imagem da sua comunidade"
+                  name="image"
+                  aria-label="Coloque a URL da imagem da sua comunidade"
+                  type="url"
+                />
+              </div>
               <div>
                 <input
                   placeholder="Coloque a URL de acesso da sua comunidade"
@@ -150,13 +171,13 @@ export default function Home() {
           <ProfileRelationsBoxWrapper>
             <h2 className="smallTitle">Comunidades ({communities.length})</h2>
             <ul>
-              {communities.map(({ title, id, url }, index) => {
+              {communities.map(({ title, id, imageUrl, url }, index) => {
                 if (index <= 5) {
                   return (
                     <li key={id}>
                       <a href={url} target="blank" rel="external">
                         <Image
-                          src={`https://picsum.photos/300?${title}`}
+                          src={imageUrl}
                           alt="Community picture"
                           layout="fill"
                           objectFit="cover"
