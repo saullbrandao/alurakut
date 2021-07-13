@@ -111,3 +111,20 @@ You will need to install Node.js and yarn
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
+
+<!-- CONTACT -->
+
+## Contact
+
+Saull Brandão - [@saullbrandao](https://twitter.com/saullbrandao) -
+saull@outlook.com
+
+Project Link:
+[https://github.com/saullbrandao/alurakut](https://github.com/saullbrandao/alurakut)
+
+[issues-shield]:
+  https://img.shields.io/github/issues/saullbrandao/alurakut.svg?style=for-the-badge
+[issues-url]: https://github.com/saullbrandao/alurakut/issues
+[license-shield]:
+  https://img.shields.io/github/license/saullbrandao/alurakut.svg?style=for-the-badge
+[license-url]: https://github.com/saullbrandao/alurakut/blob/main/LICENSE
