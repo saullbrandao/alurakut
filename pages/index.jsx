@@ -175,7 +175,7 @@ export default function Home() {
                 if (index <= 5) {
                   return (
                     <li key={id}>
-                      <a href={url} target="blank" rel="external">
+                      <a href={url} target="_blank" rel="noreferrer">
                         <Image
                           src={imageUrl}
                           alt="Community picture"
