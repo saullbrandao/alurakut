@@ -55,7 +55,7 @@ export default function Home() {
       )
       const followers = []
       response.data.map(user => {
-        followers.push(user.login)
+        followers.push({ user: user.login, url: user.html_url })
       })
 
       setFollowers(followers)
@@ -119,11 +119,11 @@ export default function Home() {
               Pessoas da comunidade ({followers.length})
             </h2>
             <ul>
-              {followers.map((user, index) => {
+              {followers.map(({ user, url }, index) => {
                 if (index <= 5) {
                   return (
                     <li key={user}>
-                      <a href={`/users/${user}`}>
+                      <a href={url} target="_blank" rel="noreferrer">
                         <Image
                           src={`https://github.com/${user}.png`}
                           alt="Profile picture"
