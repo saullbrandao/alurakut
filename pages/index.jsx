@@ -104,7 +104,7 @@ export default function Home() {
         </div>
         <div className="welcomeArea" style={{ gridArea: 'welcomeArea' }}>
           <Box>
-            <h1 className="title">Bem vindo(a)</h1>
+            <h1 className="title">Bem vindo(a), {githubUser}</h1>
             <OrkutNostalgicIconSet confiavel={3} legal={2} sexy={1} />
           </Box>
           <Box>
