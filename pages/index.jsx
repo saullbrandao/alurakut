@@ -38,9 +38,9 @@ function ProfileSidebar({ githubUser }) {
   )
 }
 
-function CommunityBox({ data, title }) {
+function ProfileRelationsBox({ data, title }) {
   return (
-    <>
+    <ProfileRelationsBoxWrapper>
       <h2 className="smallTitle">
         {title} ({data.length})
       </h2>
@@ -63,7 +63,7 @@ function CommunityBox({ data, title }) {
           }
         })}
       </ul>
-    </>
+    </ProfileRelationsBoxWrapper>
   )
 }
 
@@ -173,12 +173,8 @@ export default function Home() {
           className="profileRelationsArea"
           style={{ gridArea: 'profileRelationsArea' }}
         >
-          <ProfileRelationsBoxWrapper>
-            <CommunityBox data={followers} title="Pessoas da comunidade" />
-          </ProfileRelationsBoxWrapper>
-          <ProfileRelationsBoxWrapper>
-            <CommunityBox data={communities} title="Comunidades" />
-          </ProfileRelationsBoxWrapper>
+          <ProfileRelationsBox data={followers} title="Seguidores" />
+          <ProfileRelationsBox data={communities} title="Comunidades" />
         </div>
       </MainGrid>
     </>
