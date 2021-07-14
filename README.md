@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://alurakut-saullbrandao.vercel.app/" target="_blank">
+  <a href="https://alurakut-saullbrandao.vercel.app/">
     <img src="https://alurakut.vercel.app/logo.svg" alt="Logo" width="335" height="80">
   </a>
 
@@ -22,35 +22,28 @@
   <h2 align="center">Alurakut</h2>
 
   <p align="center">
-    This is a clone of Orkut
+    This is a clone of the social network Orkut
     <br />
     </p>
 </p>
 
 <!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Technologies</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#license">License</a></li>
-  </ol>
-</details>
+
+# Table of Contents
+
+- [About the project](#about-the-project)
+- [Technologies](#technologies)
+- [Getting started](#getting-started)
+- [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Getting started](#getting-started)
+- [Issues](#issues)
+- [Contributing](#contributing)
+- [License](#license)
 
 <!-- ABOUT THE PROJECT -->
 
-## About The Project
+# About the Project
 
 ![alurakut](https://raw.githubusercontent.com/saullbrandao/alurakut/main/public/demo.png)
 
@@ -59,7 +52,7 @@
 - User can create a community by providing a name. Can also optionally provide a
   url for the image cover and a url for the community page
 
-### Technologies
+# Technologies
 
 - [React](https://github.com/facebook/react)
 - [Next.js](https://github.com/vercel/next.js/)
@@ -67,18 +60,18 @@
 
 <!-- GETTING STARTED -->
 
-## Getting Started
+# Getting Started
 
 To get a local copy up and running follow these simple steps.
 
-### Prerequisites
+## Prerequisites
 
 You will need to install Node.js and yarn
 
 - [Node.js](https://nodejs.org/en/download/)
 - yarn
 
-### Installation
+## Installation
 
 ```sh
 # Clone Repository
@@ -93,9 +86,22 @@ $ yarn dev
 
 This starts the development server on http://localhost:3000/
 
+# Issues
+
+Create a <a href="https://github.com/saullbrandao/alurakut/issues">new issue
+report</a>, it will be an honor to be able to help you solve and further improve
+our application.
+
+# Contributing
+
+- Fork this repository;
+- Create a new branch to develop your feature: `git checkout -b my-feature`;
+- Commit your changes: `git commit -m 'feat: my new feature'`;
+- Push to your branch: `git push origin my-feature`.
+- Open a Pull Request
 <!-- LICENSE -->
 
-## License
+# License
 
-This project is under the [MIT License](./LICENSE) | Made by
-[Saull Brandão](https://www.linkedin.com/in/saullbrandao/).
+Distributed under the MIT License. See [LICENSE](./LICENSE) for more
+information. Made by [Saull Brandão](https://www.linkedin.com/in/saullbrandao/).
