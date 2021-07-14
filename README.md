@@ -34,9 +34,8 @@
 - [About the project](#about-the-project)
 - [Technologies](#technologies)
 - [Getting started](#getting-started)
-- [Prerequisites](#prerequisites)
+  - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-  - [Getting started](#getting-started)
 - [Issues](#issues)
 - [Contributing](#contributing)
 - [License](#license)
@@ -62,14 +61,12 @@
 
 # Getting Started
 
-To get a local copy up and running follow these simple steps.
-
 ## Prerequisites
 
 You will need to install Node.js and yarn
 
 - [Node.js](https://nodejs.org/en/download/)
-- yarn
+- [Yarn](https://classic.yarnpkg.com/en/docs/install)
 
 ## Installation
 
