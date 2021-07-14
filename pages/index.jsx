@@ -82,7 +82,7 @@ export default function Home() {
   useEffect(() => {
     async function getFollowers(githubUser) {
       const response = await axios.get(
-        `https://api.github.com/users/${githubUser}/following`,
+        `https://api.github.com/users/${githubUser}/followers`,
       )
       const followers = []
       response.data.map(user => {
@@ -174,7 +174,7 @@ export default function Home() {
           style={{ gridArea: 'profileRelationsArea' }}
         >
           <ProfileRelationsBoxWrapper>
-            <CommunityBox data={followers} title="Seguidores" />
+            <CommunityBox data={followers} title="Pessoas da comunidade" />
           </ProfileRelationsBoxWrapper>
           <ProfileRelationsBoxWrapper>
             <CommunityBox data={communities} title="Comunidades" />
