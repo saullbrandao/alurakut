@@ -27,9 +27,7 @@
     </p>
 </p>
 
-<!-- TABLE OF CONTENTS -->
-
-# Table of Contents
+# :bookmark_tabs: Table of Contents
 
 - [About the project](#about-the-project)
 - [Technologies](#technologies)
@@ -40,9 +38,7 @@
 - [Contributing](#contributing)
 - [License](#license)
 
-<!-- ABOUT THE PROJECT -->
-
-# About the Project
+# :page_with_curl: About the Project
 
 ![alurakut](https://raw.githubusercontent.com/saullbrandao/alurakut/main/public/demo.png)
 
@@ -51,15 +47,13 @@
 - User can create a community by providing a name. Can also optionally provide a
   url for the image cover and a url for the community page
 
-# Technologies
+# :computer: Technologies
 
 - [React](https://github.com/facebook/react)
 - [Next.js](https://github.com/vercel/next.js/)
 - [Styled Components](https://github.com/styled-components/styled-components)
 
-<!-- GETTING STARTED -->
-
-# Getting Started
+# :rocket: Getting Started
 
 ## Prerequisites
 
@@ -83,22 +77,21 @@ $ yarn dev
 
 This starts the development server on http://localhost:3000/
 
-# Issues
+# :interrobang: Issues
 
 Create a <a href="https://github.com/saullbrandao/alurakut/issues">new issue
 report</a>, it will be an honor to be able to help you solve and further improve
 our application.
 
-# Contributing
+# :mailbox: Contributing
 
 - Fork this repository;
 - Create a new branch to develop your feature: `git checkout -b my-feature`;
 - Commit your changes: `git commit -m 'feat: my new feature'`;
 - Push to your branch: `git push origin my-feature`.
 - Open a Pull Request
-<!-- LICENSE -->
 
-# License
+# :lock: License
 
 Distributed under the MIT License. See [LICENSE](./LICENSE) for more
 information. Made by [Saull Brandão](https://www.linkedin.com/in/saullbrandao/).
