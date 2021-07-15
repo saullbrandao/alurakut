@@ -6,7 +6,7 @@ export default async function handler(request, response) {
     const client = new SiteClient(process.env.NEXT_DATO_API_TOKEN)
 
     const record = await client.items.create({
-      itemType: '966375',
+      itemType: process.env.NEXT_DATO_COMMUNITY_MODEL_ID,
       ...request.body.data,
     })
 
