@@ -9,13 +9,13 @@ export const ProfileRelationsBoxWrapper = styled(Box)`
     max-height: 220px;
     list-style: none;
   }
-  /* img {
+  img {
     object-fit: cover;
     background-position: center center;
     width: 100%;
     height: 100%;
     position: relative;
-  } */
+  }
   ul li a {
     display: inline-block;
     height: 102px;

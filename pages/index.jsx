@@ -1,30 +1,20 @@
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from 'react'
 import { MainGrid } from '../src/components/MainGrid'
 import { Box } from '../src/components/Box'
+import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations'
 import {
   AlurakutMenu,
   AlurakutProfileSidebarMenuDefault,
   OrkutNostalgicIconSet,
 } from '../src/lib/AlurakutCommons'
-import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations'
 import axios from 'axios'
-import Image from 'next/image'
-import styled from 'styled-components'
 import { checkImage } from '../src/utils/checkImage'
-
-const ProfileImage = styled(Image)`
-  border-radius: 8px;
-`
 
 function ProfileSidebar({ githubUser }) {
   return (
     <Box as="aside">
-      <ProfileImage
-        src={`https://github.com/${githubUser}.png`}
-        alt="Profile picture"
-        width="128"
-        height="128"
-      />
+      <img src={`https://github.com/${githubUser}.png`} alt="Profile picture" />
       <hr />
       <p>
         <a href={`https://github.com/${githubUser}`} className="boxLink">
@@ -38,25 +28,24 @@ function ProfileSidebar({ githubUser }) {
   )
 }
 
-function ProfileRelationsBox({ data, title }) {
+function ProfileRelationsBox({ data, boxTitle }) {
   return (
     <ProfileRelationsBoxWrapper>
       <h2 className="smallTitle">
-        {title} ({data.length})
+        {boxTitle} ({data?.length || 0})
       </h2>
       <ul>
-        {data.map(({ name, url, imageUrl, id }, index) => {
+        {data?.map(({ title, name, url, imageUrl, id }, index) => {
           if (index <= 5) {
             return (
               <li key={id}>
-                <a href={url} target="_blank" rel="noreferrer">
-                  <Image
-                    src={imageUrl}
-                    alt="Profile picture"
-                    layout="fill"
-                    objectFit="cover"
-                  />
-                  <span>{name}</span>
+                <a
+                  href={url || `/communities/${id}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img src={imageUrl} alt="Profile picture" />
+                  <span>{name || title}</span>
                 </a>
               </li>
             )
@@ -68,15 +57,8 @@ function ProfileRelationsBox({ data, title }) {
 }
 
 export default function Home() {
-  const githubUser = 'torvalds'
-  const [communities, setCommunities] = useState([
-    {
-      id: 'gergerherthrthrthjrthjrtyrtyjtyjktym514614',
-      name: 'Eu odeio acordar cedo',
-      imageUrl: 'https://alurakut.vercel.app/capa-comunidade-01.jpg',
-      url: 'https://github.com',
-    },
-  ])
+  const githubUser = 'saullbrandao'
+  const [communities, setCommunities] = useState([])
   const [followers, setFollowers] = useState([])
 
   useEffect(() => {
@@ -156,14 +138,6 @@ export default function Home() {
                   type="url"
                 />
               </div>
-              <div>
-                <input
-                  placeholder="Coloque a URL de acesso da sua comunidade"
-                  name="url"
-                  aria-label="Coloque a URL de acesso da sua comunidade"
-                  type="url"
-                />
-              </div>
 
               <button>Criar comunidade</button>
             </form>
@@ -173,8 +147,11 @@ export default function Home() {
           className="profileRelationsArea"
           style={{ gridArea: 'profileRelationsArea' }}
         >
-          <ProfileRelationsBox data={followers} title="Seguidores" />
-          <ProfileRelationsBox data={communities} title="Comunidades" />
+          <ProfileRelationsBox data={followers} boxTitle="Meus Amigos" />
+          <ProfileRelationsBox
+            data={communities}
+            boxTitle="Minhas Comunidades"
+          />
         </div>
       </MainGrid>
     </>
