@@ -102,7 +102,7 @@ export default function Home() {
       title: formData.get('title'),
       imageUrl: validImage
         ? imageUrl
-        : `https://picsum.photos/300?${formData.get('title')}`,
+        : `https://picsum.photos/seed/${formData.get('title')}/300`,
       creatorSlug: githubUser,
     }
     const response = await axios.post('/api/communities', {
