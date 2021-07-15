@@ -42,16 +42,18 @@
 
 ![alurakut](https://raw.githubusercontent.com/saullbrandao/alurakut/main/public/demo.png)
 
-- Use data from the Github API to display user information(username, profile
+- It uses data from the Github API to display user information(username, profile
   picture and followers)
 - User can create a community by providing a name. Can also optionally provide a
-  url for the image cover and a url for the community page
+  url for the image cover
+-
 
 # :computer: Technologies
 
 - [React](https://github.com/facebook/react)
 - [Next.js](https://github.com/vercel/next.js/)
 - [Styled Components](https://github.com/styled-components/styled-components)
+- [DatoCMS](https://www.datocms.com/)
 
 # :rocket: Getting Started
 
@@ -70,6 +72,10 @@ $ git clone https://github.com/saullbrandao/alurakut.git && cd alurakut
 
 # Install Dependencies
 $ yarn
+
+# You'll will need to create a DatoCMS project with a model named Community with Title, Image URL and Creator Slug fields(All fields as single-line strings)
+
+# Fill .env.local file with YOUR environment variables, according to .env.example file.
 
 # Run Application
 $ yarn dev
