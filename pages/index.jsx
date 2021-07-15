@@ -79,6 +79,14 @@ export default function Home() {
       setFollowers(followers)
     }
 
+    async function getCommunities() {
+      const response = await axios.get('/api/communities')
+      if (response.status === 200) {
+        setCommunities(response.data.allCommunities)
+      }
+    }
+
+    getCommunities()
     getFollowers(githubUser)
   }, [githubUser])
 
@@ -91,14 +99,22 @@ export default function Home() {
     const validImage = await checkImage(imageUrl)
 
     const newCommunity = {
-      id: new Date().toISOString(),
       title: formData.get('title'),
       imageUrl: validImage
         ? imageUrl
         : `https://picsum.photos/300?${formData.get('title')}`,
-      url: formData.get('url'),
+      creatorSlug: githubUser,
     }
-    setCommunities([...communities, newCommunity])
+    const response = await axios.post('/api/communities', {
+      data: newCommunity,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    if (response.status === 200) {
+      setCommunities([...communities, response.data])
+    }
 
     for (let key of formData.keys()) {
       formData.delete(key)
