@@ -9,6 +9,22 @@ export default function LoginScreen() {
   const [githubUser, setGithubUser] = useState('saullbrandao')
   const [validUser, setValidUser] = useState(true)
 
+  async function handleLogin(event) {
+    event.preventDefault()
+    const response = await axios.post('https://alurakut.vercel.app/api/login', {
+      githubUser,
+    })
+
+    const token = response.data.token
+    setCookie(null, 'USER_TOKEN', token, {
+      path: '/',
+      maxAge: 86400 * 7,
+    })
+
+    router.push('/')
+    if (token) setValidUser(false)
+  }
+
   return (
     <main
       style={{
@@ -37,27 +53,7 @@ export default function LoginScreen() {
         </section>
 
         <section className="formArea">
-          <form
-            className="box"
-            onSubmit={async event => {
-              event.preventDefault()
-              const response = await axios.post(
-                'https://alurakut.vercel.app/api/login',
-                {
-                  githubUser,
-                },
-              )
-
-              const token = response.data.token
-              setCookie(null, 'USER_TOKEN', token, {
-                path: '/',
-                maxAge: 86400 * 7,
-              })
-
-              router.push('/')
-              if (token) setValidUser(false)
-            }}
-          >
+          <form className="box" onSubmit={handleLogin}>
             <p>
               Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!
             </p>
