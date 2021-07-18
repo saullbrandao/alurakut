@@ -12,17 +12,21 @@ export default async function handler(request, response) {
 
     response.json(record)
   } else {
+    const { id } = request.query
     const datoResponse = await axios.post(
       'https://graphql.datocms.com/',
       {
         query: `query { 
-            allCommunities { 
-              title
-              id
-              imageUrl
-              creatorSlug 
-            } 
-          }`,
+          community(filter: {id: {eq: ${id}}}) { 
+            title
+            id
+            imageUrl
+            creatorSlug
+            members {
+              name
+            }
+          } 
+        }`,
       },
       {
         headers: {
@@ -33,6 +37,6 @@ export default async function handler(request, response) {
       },
     )
 
-    response.json(datoResponse.data.data)
+    response.json(datoResponse.data.data.community)
   }
 }

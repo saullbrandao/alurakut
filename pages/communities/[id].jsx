@@ -63,7 +63,7 @@ export default function Communities({ githubUser }) {
   useEffect(() => {
     async function getCommunityData() {
       if (id) {
-        const response = await axios.get('/api/community', {
+        const response = await axios.get('/api/communities', {
           params: {
             id,
           },
