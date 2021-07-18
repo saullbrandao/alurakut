@@ -40,7 +40,7 @@
 
 # :page_with_curl: About the Project
 
-![alurakut](https://raw.githubusercontent.com/saullbrandao/alurakut/main/public/demo.png)
+![alurakut](https://raw.githubusercontent.com/saullbrandao/alurakut/main/public/alurakut.png)
 
 - Login using a github username
 - Uses data from the Github API to display user information(username, profile
