@@ -27,8 +27,8 @@ export function AlurakutMenu({ githubUser }) {
         <nav style={{ flex: 1 }}>
           {[
             { name: 'Inicio', slug: '/' },
-            { name: 'Amigos', slug: '/amigos' },
-            { name: 'Comunidades', slug: '/comunidades' },
+            { name: 'Amigos', slug: '#' },
+            { name: 'Comunidades', slug: '/communities' },
           ].map(menuItem => (
             <Link
               key={`key__${menuItem.name.toLocaleLowerCase()}`}
@@ -206,32 +206,44 @@ export function AlurakutProfileSidebarMenuDefault() {
   return (
     <AlurakutProfileSidebarMenuDefault.Wrapper>
       <nav>
-        <a href="/">
+        <a href="#">
           <img src={`${BASE_URL}/icons/user.svg`} alt="Profile" />
           Perfil
         </a>
-        <a href="/">
+        <a href="#">
           <img src={`${BASE_URL}/icons/book.svg`} alt="Scraps" />
           Recados
         </a>
-        <a href="/">
+        <a href="#">
           <img src={`${BASE_URL}/icons/camera.svg`} alt="Pictures" />
           Fotos
         </a>
-        <a href="/">
+        <a href="#">
           <img src={`${BASE_URL}/icons/sun.svg`} alt="Testimonials" />
           Depoimentos
         </a>
       </nav>
       <hr />
       <nav>
-        <a href="/">
+        <a href="https://github.com/trending">
           <img src={`${BASE_URL}/icons/plus.svg`} alt="Github trends" />
           GitHub Trends
         </a>
         <a href="/logout">
           <img src={`${BASE_URL}//icons/logout.svg`} alt="Logout" />
           Sair
+        </a>
+      </nav>
+    </AlurakutProfileSidebarMenuDefault.Wrapper>
+  )
+}
+export function AlurakutCommunitySidebarMenuDefault() {
+  return (
+    <AlurakutProfileSidebarMenuDefault.Wrapper>
+      <nav>
+        <a href="#">
+          <img src={`${BASE_URL}/icons/plus.svg`} alt="Github trends" />
+          Participar da comunidade
         </a>
       </nav>
     </AlurakutProfileSidebarMenuDefault.Wrapper>
