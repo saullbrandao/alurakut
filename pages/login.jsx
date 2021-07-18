@@ -8,21 +8,31 @@ export default function LoginScreen() {
   const router = useRouter()
   const [githubUser, setGithubUser] = useState('saullbrandao')
   const [validUser, setValidUser] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   async function handleLogin(event) {
     event.preventDefault()
-    const response = await axios.post('https://alurakut.vercel.app/api/login', {
+
+    setIsLoading(true)
+    const response = await axios.post('/api/login', {
       githubUser,
     })
 
-    const token = response.data.token
-    setCookie(null, 'USER_TOKEN', token, {
-      path: '/',
-      maxAge: 86400 * 7,
-    })
+    if (response.data.ok) {
+      const token = response.data.token
 
-    router.push('/')
-    if (token) setValidUser(false)
+      setCookie(null, 'USER_TOKEN', token, {
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7,
+      })
+      setValidUser(true)
+      setIsLoading(false)
+
+      router.push('/')
+    } else {
+      setIsLoading(false)
+      setValidUser(false)
+    }
   }
 
   return (
@@ -68,6 +78,7 @@ export default function LoginScreen() {
                 <br />
               </>
             )}
+            {isLoading && <p>Loading...</p>}
             <button type="submit">Login</button>
           </form>
 
