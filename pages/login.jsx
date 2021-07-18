@@ -74,7 +74,10 @@ export default function LoginScreen() {
             />
             {!validUser && <p className="invalidUser">Usuário inválido</p>}
             {isLoading && <p>Loading...</p>}
-            <button type="submit">Login</button>
+            <br />
+            <button type="submit" disabled={isLoading}>
+              Login
+            </button>
           </form>
 
           <footer className="box">
