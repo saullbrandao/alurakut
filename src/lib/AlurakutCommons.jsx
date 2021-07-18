@@ -477,6 +477,7 @@ const AlurakutLoginScreen = css`
           margin-top: 24px;
           margin-bottom: 16px;
         }
+
         button {
           width: 100%;
           display: block;
@@ -487,6 +488,10 @@ const AlurakutLoginScreen = css`
           color: var(--textSecondaryColor);
         }
       }
+    }
+
+    .invalidUser {
+      color: red;
     }
     .footerArea {
       grid-area: footerArea;

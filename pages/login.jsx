@@ -14,6 +14,7 @@ export default function LoginScreen() {
     event.preventDefault()
 
     setIsLoading(true)
+    setValidUser(true)
     const response = await axios.post('/api/login', {
       githubUser,
     })
@@ -26,7 +27,6 @@ export default function LoginScreen() {
         maxAge: 60 * 60 * 24 * 7,
       })
       setValidUser(true)
-      setIsLoading(false)
 
       router.push('/')
     } else {
@@ -72,12 +72,7 @@ export default function LoginScreen() {
               value={githubUser}
               onChange={event => setGithubUser(event.target.value)}
             />
-            {!validUser && (
-              <>
-                <p>Usuário inválido</p>
-                <br />
-              </>
-            )}
+            {!validUser && <p className="invalidUser">Usuário inválido</p>}
             {isLoading && <p>Loading...</p>}
             <button type="submit">Login</button>
           </form>
