@@ -21,8 +21,6 @@ export async function checkUser(context) {
 
   const { isAuthenticated } = response.data
 
-  console.log(response.data)
-
   if (!isAuthenticated) {
     return { isAuth: false }
   }

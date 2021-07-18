@@ -220,7 +220,6 @@ export default function Home({ githubUser, userId }) {
 
 export async function getServerSideProps(context) {
   const { isAuth, props } = await checkUser(context)
-  console.log(isAuth)
   if (!isAuth) {
     return {
       redirect: {
