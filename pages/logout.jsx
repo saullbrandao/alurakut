@@ -3,7 +3,7 @@ import { parseCookies, destroyCookie } from 'nookies'
 import { useRouter } from 'next/router'
 
 export default function Logout() {
-  const [countdown, setCountdown] = useState(5)
+  const [countdown, setCountdown] = useState(3)
   const router = useRouter()
   useEffect(() => {
     const { USER_TOKEN } = parseCookies()
