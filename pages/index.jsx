@@ -9,9 +9,8 @@ import {
   OrkutNostalgicIconSet,
 } from '../src/lib/AlurakutCommons'
 import axios from 'axios'
-import nookies from 'nookies'
-import jwt from 'jsonwebtoken'
 import { checkImage } from '../src/utils/checkImage'
+import { checkUser } from '../src/utils/checkUser'
 
 function ProfileSidebar({ githubUser }) {
   return (
@@ -58,7 +57,7 @@ function ProfileRelationsBox({ data, boxTitle }) {
   )
 }
 
-export default function Home({ githubUser }) {
+export default function Home({ githubUser, userId }) {
   const [communities, setCommunities] = useState([])
   const [followers, setFollowers] = useState([])
 
@@ -176,17 +175,9 @@ export default function Home({ githubUser }) {
 }
 
 export async function getServerSideProps(context) {
-  const token = nookies.get(context).USER_TOKEN
-  const response = await axios.get('https://alurakut.vercel.app/api/auth', {
-    headers: {
-      Authorization: token,
-    },
-  })
-
-  const { isAuthenticated } = response.data
-  console.log(response.data)
-
-  if (!isAuthenticated) {
+  const { isAuth, props } = await checkUser(context)
+  console.log(isAuth)
+  if (!isAuth) {
     return {
       redirect: {
         destination: '/login',
@@ -195,11 +186,7 @@ export async function getServerSideProps(context) {
     }
   }
 
-  const { githubUser } = jwt.decode(token)
-
   return {
-    props: {
-      githubUser,
-    },
+    props,
   }
 }
