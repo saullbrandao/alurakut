@@ -163,3 +163,18 @@ export default function Communities({ githubUser, userId }) {
     </>
   )
 }
+
+export async function getServerSideProps(context) {
+  const { isAuth, props } = await checkUser(context)
+
+  if (!isAuth) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    }
+  }
+
+  return { props }
+}
