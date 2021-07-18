@@ -16,6 +16,7 @@ export const ProfileRelationsBoxWrapper = styled(Box)`
     height: 100%;
     position: relative;
   }
+
   ul li a {
     display: inline-block;
     height: 102px;
@@ -38,6 +39,7 @@ export const ProfileRelationsBoxWrapper = styled(Box)`
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
     }
+
     &:after {
       content: '';
       display: block;
@@ -49,5 +51,11 @@ export const ProfileRelationsBoxWrapper = styled(Box)`
       z-index: 1;
       background-image: linear-gradient(0deg, #00000073, transparent);
     }
+  }
+  hr {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-color: transparent;
+    border-bottom-color: #ecf2fa;
   }
 `
