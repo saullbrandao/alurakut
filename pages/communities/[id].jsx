@@ -39,7 +39,7 @@ function ProfileRelationsBox({ members, boxTitle }) {
           if (index <= 5) {
             return (
               <li key={name + index}>
-                <a href={`/users/${name}`}>
+                <a href={`https://github.com/${name}`}>
                   <img
                     src={`https://github.com/${name}.png`}
                     alt="Profile picture"
