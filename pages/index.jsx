@@ -29,7 +29,7 @@ function ProfileSidebar({ githubUser }) {
   )
 }
 
-function ProfileRelationsBox({ data, boxTitle }) {
+function ProfileRelationsBox({ data, boxTitle, githubUser }) {
   return (
     <ProfileRelationsBoxWrapper>
       <h2 className="smallTitle">
@@ -40,11 +40,7 @@ function ProfileRelationsBox({ data, boxTitle }) {
           if (index <= 5) {
             return (
               <li key={id}>
-                <a
-                  href={url || `/communities/${id}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href={url || `/communities/${id}`}>
                   <img src={imageUrl} alt="Profile picture" />
                   <span>{name || title}</span>
                 </a>
@@ -53,6 +49,19 @@ function ProfileRelationsBox({ data, boxTitle }) {
           }
         })}
       </ul>
+      <hr />
+      <a
+        href={
+          boxTitle === 'Seguidores'
+            ? `https://github.com/${githubUser}?tab=followers`
+            : boxTitle === 'Seguindo'
+            ? `https://github.com/${githubUser}?tab=following`
+            : `/communities`
+        }
+        className="boxLink"
+      >
+        Ver todos
+      </a>
     </ProfileRelationsBoxWrapper>
   )
 }
@@ -60,6 +69,8 @@ function ProfileRelationsBox({ data, boxTitle }) {
 export default function Home({ githubUser, userId }) {
   const [communities, setCommunities] = useState([])
   const [followers, setFollowers] = useState([])
+  const [following, setFollowing] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     async function getFollowers(githubUser) {
@@ -78,17 +89,36 @@ export default function Home({ githubUser, userId }) {
 
       setFollowers(followers)
     }
+    async function getFollowing(githubUser) {
+      const response = await axios.get(
+        `https://api.github.com/users/${githubUser}/following`,
+      )
+      const following = []
+      response.data.map(user => {
+        following.push({
+          name: user.login,
+          url: user.html_url,
+          imageUrl: user.avatar_url,
+          id: user.id,
+        })
+      })
+
+      setFollowing(following)
+    }
 
     async function getCommunities() {
-      const response = await axios.get('/api/communities')
-      if (response.status === 200) {
-        setCommunities(response.data.allCommunities)
-      }
+      const response = await axios.get('/api/users/communities', {
+        params: {
+          userId,
+        },
+      })
+      setCommunities(response.data.allCommunities)
     }
 
     getCommunities()
     getFollowers(githubUser)
-  }, [githubUser])
+    getFollowing(githubUser)
+  }, [githubUser, userId])
 
   async function handleCreateCommunity(event) {
     event.preventDefault()
@@ -104,7 +134,10 @@ export default function Home({ githubUser, userId }) {
         ? imageUrl
         : `https://picsum.photos/seed/${formData.get('title')}/300`,
       creatorSlug: githubUser,
+      members: [userId],
     }
+
+    setLoading(true)
     const response = await axios.post('/api/communities', {
       data: newCommunity,
       headers: {
@@ -113,6 +146,7 @@ export default function Home({ githubUser, userId }) {
     })
 
     if (response.status === 200) {
+      setLoading(false)
       setCommunities([...communities, response.data])
     }
 
@@ -155,7 +189,7 @@ export default function Home({ githubUser, userId }) {
                 />
               </div>
 
-              <button>Criar comunidade</button>
+              <button disabled={loading}>Criar comunidade</button>
             </form>
           </Box>
         </div>
@@ -163,9 +197,19 @@ export default function Home({ githubUser, userId }) {
           className="profileRelationsArea"
           style={{ gridArea: 'profileRelationsArea' }}
         >
-          <ProfileRelationsBox data={followers} boxTitle="Meus Amigos" />
+          <ProfileRelationsBox
+            data={followers}
+            githubUser={githubUser}
+            boxTitle="Seguidores"
+          />
+          <ProfileRelationsBox
+            data={following}
+            githubUser={githubUser}
+            boxTitle="Seguindo"
+          />
           <ProfileRelationsBox
             data={communities}
+            githubUser={githubUser}
             boxTitle="Minhas Comunidades"
           />
         </div>
