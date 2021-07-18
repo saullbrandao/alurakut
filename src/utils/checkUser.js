@@ -13,7 +13,7 @@ export async function checkUser(context) {
     }
   }
 
-  const response = await axios.get('http://localhost:3000/api/auth', {
+  const response = await axios.get(`${process.env.NEXT_BASE_URL}/api/auth`, {
     headers: {
       Authorization: USER_TOKEN,
     },
@@ -28,21 +28,27 @@ export async function checkUser(context) {
   }
 
   const { githubUser } = jwt.decode(USER_TOKEN)
-  const datoResponse = await axios.get('http://localhost:3000/api/users', {
-    params: {
-      name: githubUser,
+  const datoResponse = await axios.get(
+    `${process.env.NEXT_BASE_URL}/api/users`,
+    {
+      params: {
+        name: githubUser,
+      },
     },
-  })
+  )
 
   let userId = datoResponse.data.id
 
   if (!datoResponse.data.isAuth) {
-    const response = await axios.post('http://localhost:3000/api/users', {
-      data: { name: githubUser },
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await axios.post(
+      `${process.env.NEXT_BASE_URL}/api/users`,
+      {
+        data: { name: githubUser },
+        headers: {
+          'Content-Type': 'application/json',
+        },
       },
-    })
+    )
     userId = response.data.id
   }
 
