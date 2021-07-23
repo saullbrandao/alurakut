@@ -1,16 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from 'react'
-import { MainGrid } from '../src/components/MainGrid'
-import { Box } from '../src/components/Box'
-import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations'
+import { MainGrid } from '../components/MainGrid'
+import { Box } from '../components/Box'
+import { ProfileRelationsBoxWrapper } from '../components/ProfileRelations'
 import {
   AlurakutMenu,
   AlurakutProfileSidebarMenuDefault,
   OrkutNostalgicIconSet,
-} from '../src/lib/AlurakutCommons'
+} from '../lib/AlurakutCommons'
 import axios from 'axios'
-import { checkImage } from '../src/utils/checkImage'
-import { checkUser } from '../src/utils/checkUser'
+import { checkImage } from '../utils/checkImage'
+import { checkUser } from '../utils/checkUser'
 
 function ProfileSidebar({ githubUser }) {
   return (

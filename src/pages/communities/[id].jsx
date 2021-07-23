@@ -1,14 +1,14 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { Box } from '../../src/components/Box'
-import { MainGrid } from '../../src/components/MainGrid'
-import { ProfileRelationsBoxWrapper } from '../../src/components/ProfileRelations'
+import { Box } from '../../components/Box'
+import { MainGrid } from '../../components/MainGrid'
+import { ProfileRelationsBoxWrapper } from '../../components/ProfileRelations'
 import {
   AlurakutCommunitySidebarMenuDefault,
   AlurakutMenu,
-} from '../../src/lib/AlurakutCommons'
-import { checkUser } from '../../src/utils/checkUser'
+} from '../../lib/AlurakutCommons'
+import { checkUser } from '../../utils/checkUser'
 
 function ProfileSidebar({ community }) {
   return (

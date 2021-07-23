@@ -1,14 +1,14 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Box } from '../src/components/Box'
-import { MainGrid } from '../src/components/MainGrid'
+import { Box } from '../components/Box'
+import { MainGrid } from '../components/MainGrid'
 import {
   AlurakutMenu,
   AlurakutProfileSidebarMenuDefault,
-} from '../src/lib/AlurakutCommons'
-import { chunkArray } from '../src/utils/chunkArray'
-import { checkUser } from '../src/utils/checkUser'
+} from '../lib/AlurakutCommons'
+import { chunkArray } from '../utils/chunkArray'
+import { checkUser } from '../utils/checkUser'
 
 function ProfileSidebar({ githubUser }) {
   return (
